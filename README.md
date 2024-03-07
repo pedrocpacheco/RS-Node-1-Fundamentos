@@ -101,3 +101,102 @@ Exemplos:
 - `PUT /users` => Atulizando usuario ao todo no Backend
 - `PATCH /users` => Atualizando dado especifico de usuario no Backend
 - `DELETE /users` => Deletando usuario do Backend
+
+## Aula 4- Salvando em memoria
+
+Agora na nossa aplicação, vamos começar a salvar dados de forma Statefull
+
+### O que é Stateful e VS Stateless
+
+A Statefull, depende das informações salvas em memoria para funcionar.
+
+- Os dados são perdidos ao reiniciar
+
+Já uma Stateless, não depende da memoria. Ela salva informações fora, em BDs, etc.
+
+- Os dados não são perdios ao iniciar
+
+### Começando pelas Statefull
+
+Vamos criar um array para salvar os nossos usuarios
+
+`users = []`
+
+### 1. Adicionando Usuario na Memoria
+Agora, vou fazer para que quando uma Requisição POST seja feita, um usuario novo seja salvo.
+
+```js
+ìf (method === 'POST' && url === '/users') {
+  users.push({
+    id: 1,
+    name: 'Pedro',
+    email: 'pedro@gmail.com'
+  })
+
+  return res.end('Criação de Usuario')
+}
+```
+
+### 2. Listando Usuarios na memoria
+Agora, dese-jo mostrar essa lista em memoria com um usuario adicionado, como reposta de uma requisição GET.
+
+#### 1.0 Retornando a Lista
+```js
+if (method === 'GET' && url === '/users') {
+  return res.end(users)
+}
+```
+⚠️ Ao realizar a requisição, um erro vai acontecer. Pois a resposta do backend precisa ser ou `string` ou `buffer`
+
+#### 2.0 Para passar por esse problema usamos o JSON. 
+
+Chamado de JavaScript Object Notation, ele é uma maneira de passar tipos de dados diferentes em uma `string`
+
+```js
+if (method === 'POST' && url === '/users') {
+  return res.end(JSON.stringfy(users))
+}
+```
+
+E, ao então fazer uma requisição `GET` no servidor, temos:
+`[{"id": 1, "nome": "Pedro", email: "pedro@gmail.com"}]`
+
+Mas ainda da pra melhorar!
+
+#### 3.0 Como definir a resposta como JSON
+Como então podemos falar para o Frontend que o Backend esta devolvendo um JSON?
+
+Para isso existem os `headers`!
+
+
+### Headers
+Cabeçalhos são metadados, para que tanto o Back quanto o Front saibam lidar com X requisição de determinada forma.
+
+Ele basicamente diz, como o dado retornado deve ser interpretado, mas não o modifica.
+
+Vamos definir a nossa resposta do servidor na requisição do metodo `GET` e url `/users` como `JSON`
+
+Para isso, precisamos adicionar o header `Content-Type` com o valor `application/json`
+
+#### Código Atualizado
+```js
+if(method === 'GET' && url === '/users'){
+  return res
+    .setHeader('Content-Type', 'application/json')
+    .end(JSON.stringfy(users))
+}
+```
+#### Resposta da requisição
+```json
+[
+  {
+    "id": 1,
+    "name": "Pedro",
+    "email": "pedro@gmail.com"
+  }
+]
+```
+
+✅ Podemos ter headers sendo enviados do backend ao -> frontend, como vimos em `res.setHeader`
+ 
+✅ Ou também do frontend ao -> backend, como em `header = req.headers`
