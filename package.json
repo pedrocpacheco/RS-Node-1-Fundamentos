@@ -1,6 +1,7 @@
 {
   "name": "rs-node-1-fundamentos",
   "version": "1.0.0",
+  "type": "module",
   "description": "🚀🟢 1- Primeiro Projeto da Formação de NodeJs na Rocketseat. Inteiramente feito com NodeJS puro.",
   "main": "index.js",
   "scripts": {
