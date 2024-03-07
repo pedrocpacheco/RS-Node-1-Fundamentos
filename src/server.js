@@ -1,25 +1,30 @@
 // const http = require('http')
 import http from 'node:http'
 
+const users = []
+
 const server = http.createServer((req, res) => {
   // const method = req.method
   // const url = req.url
   const { method, url } = req
 
-  if (method === 'GET' && url === '/users')
-    res.end('Listagem de Usuarios')
+  console.log(req.headers);
 
-  if (method === 'POST' && url === '/users')
+  if (method === 'GET' && url === '/users') {
+    return res
+      .setHeader('Content-Type', 'application/json')
+      .end(JSON.stringify(users))
+  }
+
+  if (method === 'POST' && url === '/users') {
+    users.push({
+      id: 1,
+      name: 'Pedro',
+      email: 'pedro@gmail.com'
+    })
+
     res.end('Criação de usuario')
-
-  if (method === 'PUT' && url === '/users')
-    res.end('Atualização geral de Usuario')
-
-  if (method === 'PATCH' && url === '/users')
-    res.end('Atualização especifica de Usuario')
-
-  if (method === 'DELETE' && url === '/users')
-    res.end('Remoção de Usuario')
+  }
 
 })
 
