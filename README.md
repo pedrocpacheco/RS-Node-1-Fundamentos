@@ -61,7 +61,7 @@ node --watch src/server.js
 ```
 Agora, toda vez que quisermos usar o nosso script, rodamos `npm run dev` no terminal
 
-## Aula 3- Criação de Rotas
+## Aula 1.1- Criação de Rotas
 
 ### Entendendo o que são as Rotas
 
@@ -102,7 +102,7 @@ Exemplos:
 - `PATCH /users` => Atualizando dado especifico de usuario no Backend
 - `DELETE /users` => Deletando usuario do Backend
 
-## Aula 4- Salvando em memoria
+## Aula 1.2- Salvando em memoria
 
 Agora na nossa aplicação, vamos começar a salvar dados de forma Statefull
 
@@ -201,7 +201,7 @@ if(method === 'GET' && url === '/users'){
 
 ✅ Ou também do frontend ao -> backend, como em `header = req.headers`
 
-## Aula 5- HTTP Status Code
+## Aula 1.3- HTTP Status Code
 
 Os HTTP Status code são formas de dizer qual foi o resultado da requisição requerida.
 
@@ -216,3 +216,17 @@ Caso a requisição não entre em nenhum de nossos if's, vamos dizer que ela foi
 ```js
 res.writeHead(404).end()
 ```
+
+### Aula 2.1 - O que são Streams?
+
+Streams nada mais são, do que maneiras de fazer uma ação grande, que demandaria muito tempo paraser executada, de pouquinho em poquinho.
+
+- Eu leio um upload aos poucos. Processando os seus dados, enquanto ele ainda é enviado.
+
+#### Readable Streams
+Cliente enviando aos poucos uma informação pro Servidor
+- Exemplo de usuario enviando um arquivo CSV de 1gb, o servidor lê e ja processa ele em 10mb/s 
+
+#### Writable Streams
+Servidor aos poucos uma informação ao Cliente
+- Exemplo de um vídeo da netflix. O servidor envia ele aos poucos ao cliente assistindo
