@@ -32,3 +32,22 @@ Por padrão, vem setado o CommunJS. Mas atualmente, o padrão mais utilizado é 
   'type': "ESModule"
 ```
 Ao adicionar essa linha, o ESModule fica setado.
+
+## Aula 2- Baixando Node Watch
+
+Criamos o nosso servidor node, mas ele não atualiza automaticamente quando há alguma mudança. 
+
+- Para melhorar isso, vamos fazer o node "assistir" o nosso server
+
+Então, ao invez de rodar o servidor com `node src/server.js` usamos o watch: 
+```cmd
+node --watch src/server.js
+```
+
+- Mas, para não ter que rodar esse mesmo comando sempre, vamos criar um comando no `package.json`:
+```json
+"scripts": {
+  "dev": "node --watch src/server.js"
+}
+```
+Agora, toda vez que quisermos usar o nosso script, rodamos `npm run dev` no terminal
