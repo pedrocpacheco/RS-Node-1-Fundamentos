@@ -1,0 +1,12 @@
+{
+  "name": "rs-node-1-fundamentos",
+  "version": "1.0.0",
+  "description": "🚀🟢 1- Primeiro Projeto da Formação de NodeJs na Rocketseat. Inteiramente feito com NodeJS puro.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
