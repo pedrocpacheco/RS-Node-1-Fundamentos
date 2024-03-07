@@ -198,5 +198,21 @@ if(method === 'GET' && url === '/users'){
 ```
 
 ✅ Podemos ter headers sendo enviados do backend ao -> frontend, como vimos em `res.setHeader`
- 
+
 ✅ Ou também do frontend ao -> backend, como em `header = req.headers`
+
+## Aula 5- HTTP Status Code
+
+Os HTTP Status code são formas de dizer qual foi o resultado da requisição requerida.
+
+Definindo o metodo certo para a criação de um novo recurso. 
+
+```js
+res.statusCode(201).end()
+```
+
+Caso a requisição não entre em nenhum de nossos if's, vamos dizer que ela foi uma má requisição
+
+```js
+res.writeHead(404).end()
+```
