@@ -33,6 +33,15 @@ Por padrão, vem setado o CommunJS. Mas atualmente, o padrão mais utilizado é 
 ```
 Ao adicionar essa linha, o ESModule fica setado.
 
+### Importante modulos padrões do Node
+Para importar modulos padrões do node, como o `http` comumente é usado `node:` antes do modulo.
+
+- Exemplo:
+```js 
+import http from 'node:http'
+```
+** só uma dica, o nome depois do import pode ser o que você quiser se for o padrão.
+
 ## Aula 2- Baixando Node Watch
 
 Criamos o nosso servidor node, mas ele não atualiza automaticamente quando há alguma mudança. 
