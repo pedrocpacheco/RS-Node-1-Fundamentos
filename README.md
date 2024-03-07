@@ -60,3 +60,44 @@ node --watch src/server.js
 }
 ```
 Agora, toda vez que quisermos usar o nosso script, rodamos `npm run dev` no terminal
+
+## Aula 3- Criação de Rotas
+
+### Entendendo o que são as Rotas
+
+Rotas são os endpoints que a nossa aplicação backend pode ter, com diferentes funcionalidades para X assuntos.
+
+Então, usando o exemplo da entidade Usuario, podemos ter rotas para:
+
+- Criar Usuarios
+- Listar de Usuarios
+- Editar Usuarios
+- Remover Usuarios
+
+### Requisições HTTP
+
+Requisições HTTP, dentre tantas coisas, tem duas caracteristicas
+
+#### Metodos HTTP
+
+O Metodo de uma requisição HTTP é tudo que vem antes do servidor `METODO http://localhost/url`
+
+Vamos falar melhor agora sobre cada metodo HTTP:
+
+- GET => Buscar um recurso do backend
+- POST => Criar um recurso no backend
+- PUT => Atualizar um recurso completo no backend
+- PATCH => Atualizar uma informação especifica de um recurso backend
+- DELETE => Deletar um recurso do backend  
+
+#### URL 
+A URL de uma requisição HTTP é tudo o que vem depois do servidor `localhost:3333/url`
+
+Eu posso ter duas rotas no meu backend, com a mesma URL, mas com funções diferentes. O que as diferencia é o metodo que elas utilizam.
+
+Exemplos:
+- `GET /users` => Buscando usuarios no Backend
+- `POST /users` ==> Criando usuario no Backend
+- `PUT /users` => Atulizando usuario ao todo no Backend
+- `PATCH /users` => Atualizando dado especifico de usuario no Backend
+- `DELETE /users` => Deletando usuario do Backend
