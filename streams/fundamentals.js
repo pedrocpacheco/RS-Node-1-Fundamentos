@@ -1,4 +1,4 @@
-import { Readable, Writable, Transform, Duplex } from 'node:stream'
+import { Readable, Writable, Transform } from 'node:stream'
 
 class OneToHundredStream extends Readable {
   index = 1

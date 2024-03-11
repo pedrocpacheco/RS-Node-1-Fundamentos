@@ -230,3 +230,45 @@ Cliente enviando aos poucos uma informação pro Servidor
 #### Writable Streams
 Servidor aos poucos uma informação ao Cliente
 - Exemplo de um vídeo da netflix. O servidor envia ele aos poucos ao cliente assistindo
+
+## Aula 2.2 - Construindo Streams do Zero
+Vamos começar a criar as nossas próprias Streams, as nossas proprias ferramentas que deixam que façamos aos poucos ao inves de fazer tudo de uma vez.
+
+### Importação
+Vamos começar importanto o nosso primeiro tipo de Stream, o `Readable`
+
+```js
+import { Readable } from 'node:stream'
+```
+
+### Construindo e Entendendo a Stream
+Então, eu construi uma Stream que vai contando de 1 até 100, respeitando um tempo.
+
+Primeira coisa que preciso entender, é que Streams são classes. Então, quando eu quiser criar uma Stream, eu preciso herdar da `classe pai Readable ou Writable` que são os tipos de Stream.
+
+```js
+class OneToHundredStream extends Readable {
+  index = 1
+
+  _read() {
+    const i = this.index++
+
+    setTimeout(() => {
+      if (i > 100) {
+        this.push(null)
+      } else {
+        const buf = Buffer.from(String(i))
+
+        this.push(buf)
+      }
+    }, 1000)
+  }
+}
+
+new OneToHundredStream()
+  .pipe(process.stdout)
+```
+O que acontece é. Readable quando criados ja utilizam do seu metodo _read()
+- Então, setamos para que esse metodo seja esse contador de numeros
+
+O ponto aqui é, eu consigo já mostrar na tela o numero 10, antes do 99 ter sido carregado.

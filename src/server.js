@@ -8,8 +8,6 @@ const server = http.createServer((req, res) => {
   // const url = req.url
   const { method, url } = req
 
-  console.log(req.headers);
-
   if (method === 'GET' && url === '/users') {
     return res
       .setHeader('Content-Type', 'application/json')
@@ -17,17 +15,17 @@ const server = http.createServer((req, res) => {
   }
 
   if (method === 'POST' && url === '/users') {
-    users.push({
+    const user = {
       id: 1,
       name: 'Pedro',
-      email: 'pedro@gmail.com'
-    })
+      email: 'pedro@email.com'
+    }
+    users.push(user)
 
-    res.writeHead(201).end();
+    return res.writeHead(201).end(user)
   }
 
-  res.writeHead(404).end()
-
+  return res.writeHead(404).end()
 })
 
 server.listen(3333)
