@@ -15,7 +15,7 @@ class OneToOneHundredStream extends Readable {
 
         this.push(buf)
       }
-    }, 1000);
+    }, 5);
   }
 }
 
@@ -23,4 +23,8 @@ fetch('http://localhost:3334', {
   method: 'POST',
   body: new OneToOneHundredStream(),
   duplex: 'half'
+}).then(res => {
+  return res.text()
+}).then(data => {
+  console.log(data)
 })
