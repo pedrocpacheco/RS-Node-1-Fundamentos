@@ -15,13 +15,13 @@ class InvertNumberStream extends Transform {
 // res => WritableStream
 
 const server = http.createServer(async (req, res) => {
-  const buffers = []
+  const infosRecebidas = []
 
-  for await (const chunk of req) {
-    buffers.push(chunk)
+  for await (const pedaco of req) {
+    infosRecebidas.push(pedaco)
   }
 
-  const fullStreamContent = Buffer.concat(buffers).toString()
+  const fullStreamContent = Buffer.concat(infosRecebidas).toString()
 
   console.log(fullStreamContent);
 
