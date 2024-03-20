@@ -1,29 +1,22 @@
 // const http = require('http')
 import http from 'node:http'
+import { json } from './middlewares/json.js'
+import { Database } from './database.js'
 
-const users = []
+const database = new Database()
 
 const server = http.createServer(async (req, res) => {
   // const method = req.method
   // const url = req.url
   const { method, url } = req
 
-  const buffers = []
-
-  for await (const chunk of req) {
-    buffers.push(chunk)
-  }
-
-  try {
-    req.body = JSON.parse(Buffer.concat(buffers).toString())
-  } catch {
-    req.body = null
-  }
+  // interceptador(sempre recebem: req, res)
+  await json(req, res)
 
   if (method === 'GET' && url === '/users') {
-    return res
-      .setHeader('Content-Type', 'application/json')
-      .end(JSON.stringify(users))
+    const users = database.select('users')
+
+    return res.end(JSON.stringify(users))
   }
 
   if (method === 'POST' && url === '/users') {
@@ -34,7 +27,7 @@ const server = http.createServer(async (req, res) => {
       name,
       matricula,
     }
-    users.push(user)
+    database.insert('users', user)
 
     return res.writeHead(201).end(JSON.stringify(user))
   }
